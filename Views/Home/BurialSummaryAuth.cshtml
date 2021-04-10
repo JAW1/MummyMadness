@@ -8,9 +8,12 @@
     <div>
         <div>
             <div class="row">
-
+                <div class="col-4">
+                    <a type="button" asp-action="AddBurial">Add Burial Record</a>
+                </div>
                 <div class="col-2">
-                    <vc:sex />
+                    <vc:gender></vc:gender><br />
+                    <vc:year-evac></vc:year-evac>
                 </div>
 
                 <div class="col-9">
@@ -46,7 +49,7 @@
                                 </td>
                                 <td>
                                     <!--Buttons to edit and remove items currently in the database-->
-                                    <form method="post" asp-action="BurialSummaryAuth">
+                                    <form method="post" asp-action="BurialSummaryAuthEdit">
                                         <button class="btn btn-group-sm btn-secondary" type="submit" name="EditId" value="@x.Id">Edit</button>
                                     </form>
                                 </td>

@@ -1,0 +1,52 @@
+﻿@model Official
+
+<h2>Add Burial Record</h2>
+
+<form asp-action="AddRecord" method="post">
+    <label asp-for="BurialId">Burial Location (<i>ex: N 190 E 30 NE 35</i>)</label>
+    <input asp-for="BurialId" /><br />
+
+    <label asp-for="Burialdepth">Burial Depth</label>
+    <input asp-for="Burialdepth" /><br />
+
+    <label asp-for="Yearexcav">Year Excavated</label>
+    <input asp-for="Yearexcav" /><br />
+
+    <label asp-for="AgeSkull2018">Age at Death</label> <!--Should it be age of skull?-->
+    <input asp-for="AgeSkull2018" /><br />
+
+    <label asp-for="SaMalepleNuMaleber">Sample Taken</label>
+    <input asp-for="SaMalepleNuMaleber" /><br />
+
+    <label asp-for="PreservationIndex">Preservation Index</label>
+    <input asp-for="PreservationIndex" /><br />
+
+    <label asp-for="Description">Description</label>
+    <textarea asp-for="Description" /><br />
+
+    <label asp-for="BurialSituationNotes">Situation Notes</label>
+    <textarea asp-for="BurialSituationNotes" /><br />
+
+    <label asp-for="HairColor">Hair Color</label>
+    <input asp-for="HairColor" /><br />
+
+    <label asp-for="EstiMaleateLivingStature">Estimated Living Stature</label>
+    <input  asp-for="EstiMaleateLivingStature" /><br />
+
+    <label asp-for="Burialpreservation">Burial Preservation</label>
+    <input asp-for="Burialpreservation" /><br />
+
+    <label asp-for="GenderGe">Gender</label>
+    <select asp-for="GenderGe">
+        <option value=""></option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Undetermined">Undetermined</option>
+    </select>
+    <br /><br />
+    
+    <div asp-validation-summary="All"></div>
+
+    <button type="submit">Submit</button>
+
+</form>

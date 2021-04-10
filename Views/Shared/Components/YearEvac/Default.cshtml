@@ -1,0 +1,12 @@
+﻿@model IEnumerable<string>
+
+<h4><b>Year of Excavation</b></h4>
+
+<a asp-action="BurialSummaryAll" asp-controller="Home" asp-route-yearEvac="">Clear Filter</a>
+<br />
+
+@foreach (string x in Model)
+{
+    <a asp-action="BurialSummaryAll" asp-controller="Home" asp-route-yearEvac="@x">@x</a>
+    <br />
+}
