@@ -29,25 +29,76 @@ namespace MummyMadness.Controllers
         }
 
         [HttpGet]
-        public IActionResult BurialSummaryAll(string sex, int pageNum = 5)
+        public IActionResult AddBurial()
         {
-            int pageSize = 100;
+            return View();
+        }
 
-            return View(new BurialSummaryAllViewModel
+        [HttpPost]
+        public IActionResult AddBurial(Official officialForm)
+        {
+            context.Officials.Add(officialForm);
+            context.SaveChanges();
+
+            return View("BurialSummaryAuth", new BurialSummaryAllViewModel
             {
-                Burial = (context.Officials.OrderBy(m => m.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList()),
-                PageNumberingInfo = new PageNumberingInfo
-                {
-                    NumItemsPerPage = pageSize,
-                    CurrentPage = pageNum,
-                    TotalNumItems = (context.Officials.Count())
-                },
-                GenderCategory = sex
-
+                Burials = context.Officials
             });
         }
-        //This passes the itemId to be able to be edited in the Edit view
-        
+
+        [HttpGet]
+        public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 0)
+        {
+            int pageSize = 100;
+            if (yearEvac is null)
+            {
+                return View(new BurialSummaryAllViewModel
+                {
+
+                    Burial = context.Officials
+                    .Where(x => x.GenderGe == gender || gender == null)
+                    //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                    .OrderBy(m => m.GenderGe)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList(),
+
+
+                    PageNumberingInfo = new PageNumberingInfo
+                    {
+                        NumItemsPerPage = pageSize,
+                        CurrentPage = pageNum,
+                        TotalNumItems = (context.Officials.Count())
+                    },
+                    //GenderCategory = sex
+
+                });
+            }
+
+            else
+            {
+                return View(new BurialSummaryAllViewModel
+                {
+
+                    Burial = context.Officials
+                   .Where(x => x.Yearexcav == yearEvac || yearEvac == null)
+                   //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                   .OrderBy(m => m.Yearexcav)
+                   .Skip((pageNum - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList(),
+
+
+                    PageNumberingInfo = new PageNumberingInfo
+                    {
+                        NumItemsPerPage = pageSize,
+                        CurrentPage = pageNum,
+                        TotalNumItems = (context.Officials.Count())
+                    },
+                    //GenderCategory = sex
+                });
+            }
+        }
         [HttpPost]
         public IActionResult BurialSummaryAll(string Id)
         {
@@ -59,66 +110,125 @@ namespace MummyMadness.Controllers
             }); ;
         }
 
-        
+
         [HttpGet]
         public IActionResult BurialRecordAll()
         {
             return View();
         }
-        
+
         [HttpGet]
-        public IActionResult BurialSummaryAuth(string sex, int pageNum = 5)
+        public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 5)
         {
             int pageSize = 100;
-
-            return View(new BurialSummaryAllViewModel
+            if (yearEvac is null)
             {
-                Burial = (context.Officials.OrderBy(m => m.BurialId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList()),
-                PageNumberingInfo = new PageNumberingInfo
+                return View(new BurialSummaryAllViewModel
                 {
-                    NumItemsPerPage = pageSize,
-                    CurrentPage = pageNum,
-                    TotalNumItems = (context.Officials.Count())
-                },
-                GenderCategory = sex
 
-            });
-        }
+                    Burial = context.Officials
+                    .Where(x => x.GenderGe == gender || gender == null)
+                    //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                    .OrderBy(m => m.GenderGe)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList(),
 
-        //This passes the itemId to be able to be edited in the Edit view
-        
-        [HttpPost]
-        public IActionResult BurialSummaryAuth(string Id)
-        {
 
-            return View("BurialRecordAll", new BurialSummaryAllViewModel
+                    PageNumberingInfo = new PageNumberingInfo
+                    {
+                        NumItemsPerPage = pageSize,
+                        CurrentPage = pageNum,
+                        TotalNumItems = (context.Officials.Count())
+                    },
+                    //GenderCategory = sex
+
+                });
+            }
+
+            else
             {
-                Burials = context.Officials.Where(x => x.Id == Id),
+                return View(new BurialSummaryAllViewModel
+                {
 
-            }); ;
-        }
-        
-        [HttpGet]
-        public IActionResult BurialRecordAuth()
-        {
-            return View();
+                    Burial = context.Officials
+                   .Where(x => x.Yearexcav == yearEvac || yearEvac == null)
+                   //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                   .OrderBy(m => m.Yearexcav)
+                   .Skip((pageNum - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList(),
+
+
+                    PageNumberingInfo = new PageNumberingInfo
+                    {
+                        NumItemsPerPage = pageSize,
+                        CurrentPage = pageNum,
+                        TotalNumItems = (context.Officials.Count())
+                    },
+                    //GenderCategory = sex
+                });
+            }
         }
 
-        [HttpGet]
-        public IActionResult About()
-        {
-            return View();
-        }
+            //This passes the itemId to be able to be edited in the Edit view
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            [HttpPost]
+            public IActionResult BurialSummaryAuth(string Id)
+            {
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                return View("BurialRecordAll", new BurialSummaryAllViewModel
+                {
+                    Burials = context.Officials.Where(x => x.Id == Id),
+
+                }); ;
+            }
+
+            [HttpPost]
+            public IActionResult BurialSummaryAuthEdit(string EditId)
+            {
+                return View("EditBurial", new BurialSummaryAllViewModel
+                {
+                    Burials = context.Officials.Where(x => x.Id == EditId)
+                });
+            }
+
+            [HttpPost]
+            public IActionResult EditBurial(Official officialForm, string editedBurial)
+            {
+                var removeBurial = context.Officials.FirstOrDefault(x => x.Id == editedBurial);
+                context.Officials.Add(officialForm);
+                context.Officials.Remove(removeBurial);
+                context.SaveChanges();
+
+                return View("BurialSummaryAuth", new BurialSummaryAllViewModel
+                {
+                    Burials = context.Officials
+                });
+            }
+
+            [HttpGet]
+            public IActionResult BurialRecordAuth()
+            {
+                return View();
+            }
+
+            [HttpGet]
+            public IActionResult About()
+            {
+                return View();
+            }
+
+            public IActionResult Privacy()
+            {
+                return View();
+            }
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            public IActionResult Error()
+            {
+                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
         }
     }
-}
+
