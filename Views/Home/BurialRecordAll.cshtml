@@ -1,0 +1,43 @@
+﻿@model BurialSummaryAllViewModel
+
+    <h1>Record Summary</h1>
+    <h2>@Model.GenderCategory</h2><br />
+                    <div class="text-left">
+                        <!--This page iterates through all of items in the Bowlers table from the database that comes from the IEnumerable in the View Model-->
+                        <div>
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-1"></div>
+
+                                    <div class="col-10">
+
+                                        @foreach (var x in Model.Burials)
+
+                                        {
+                                            <h3 class="bluebunny">Excavation Data for Burial - @x.BurialId </h3>
+
+                                            <ul>
+                                                <li>Burial Depth: @x.Burialdepth</li>
+                                                <li>Year Excavated: @x.Yearexcav</li>
+                                                <li>Age at Death: @x.Burialageatdeath</li>
+                                                @*<li>Sample Taken: @x.Burialsampletaken</li>*@
+                                                <li>Preservation Index: @x.PreservationIndex</li>
+                                                <li>Description: @x.Description</li>
+                                                <li>Situation Notes: @x.BurialSituationNotes</li>
+                                                <li>Hair Color: @x.HairColor</li>
+                                                @*<li>Estimated Living Stature: @x.EstimateLivingStature</li>*@
+                                                <li>Burial Preservation: @x.Burialpreservation</li>
+                                                <li>Gender: @x.GenderGe</li>
+                                                <li>Item</li>
+                                                <li>Item</li>
+                                                <li>Item</li>
+                                                <li>Item</li>
+                                            </ul>
+
+                                        }
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>

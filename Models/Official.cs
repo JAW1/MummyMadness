@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+#nullable disable
+
+namespace MummyMadness.Models
+{
+    public partial class Official
+    {
+        [Key]
+        public string Id { get; set; }
+        public string BurialId { get; set; }
+        public string Maleonthonskull { get; set; }
+        public string YearonSkull { get; set; }
+        public string DayonSkull { get; set; }
+        public string FemaleieldBook { get; set; }
+        public string FemaleieldBookPageNuMaleber { get; set; }
+        public string InitialsoFemaleDataEntryExpert { get; set; }
+        public string InitialsoFemaleDataEntryChecker { get; set; }
+        public string ByusaMaleple { get; set; }
+        public string BodyAnalysis { get; set; }
+        public string SkullatMaleagazine { get; set; }
+        public string PostcraniaatMaleagazine { get; set; }
+        public string SexSkull2018 { get; set; }
+        public string AgeSkull2018 { get; set; }
+        public string RackandShelFemale { get; set; }
+        public string TobeconfemaleIrmaleEd { get; set; }
+        public string SkullTrauMalea { get; set; }
+        public string PostcraniaTrauMalea { get; set; }
+        public string CribraOrbitala { get; set; }
+        public string PoroticHyperostosis { get; set; }
+        public string PoroticHyperostosisLocations { get; set; }
+        public string MaleetopicSuture { get; set; }
+        public string ButtonOsteoMalea { get; set; }
+        public string OsteologyunknowncoMaleMaleent { get; set; }
+        public string TeMaleporalMaleandibularJointOsteoarthritisTmaleJoa { get; set; }
+        public string LinearHypoplasiaEnaMaleel { get; set; }
+        public string AreaHillburials { get; set; }
+        public string ToMaleb { get; set; }
+        public long? BurialareaNorthorSouth { get; set; }
+        public string Burialnors { get; set; }
+        public long? Burialareaeastorwest { get; set; }
+        public string Burialxeorw { get; set; }
+        public string Square { get; set; }
+        public long? BurialNuMaleber { get; set; }
+        public string Burialwesttohead { get; set; }
+        public string BurialwesttoFemaleeet { get; set; }
+        public string Burialsouthtohead { get; set; }
+        public string BurialsouthtoFemaleeet { get; set; }
+        public string Burialdepth { get; set; }
+        public string Length { get; set; }
+        public string Yearexcav { get; set; }
+        public string MaleonthExcavated { get; set; }
+        public string DateExcavated { get; set; }
+        public string Burialpreservation { get; set; }
+        public string Burialwrapping { get; set; }
+        public string Burialadultchild { get; set; }
+        public string GenderCode { get; set; }
+        public string BurialgenderMaleethod { get; set; }
+        public string AgeCodeSingle { get; set; }
+        public string BurialDirection { get; set; }
+        public string Burialageatdeath { get; set; }
+        public string BurialageMaleethod { get; set; }
+        public string HairColorCode { get; set; }
+        public string Burialhaircolor { get; set; }
+        public string BurialsaMalepletaken { get; set; }
+        public string LengthMale { get; set; }
+        public string LengthCmale { get; set; }
+        public string Goods { get; set; }
+        public string Cluster { get; set; }
+        public string FemaleaceBundle { get; set; }
+        public string OsteologyNotes { get; set; }
+        public string Description { get; set; }
+        public string Rack { get; set; }
+        public string Bag { get; set; }
+        public string Burial { get; set; }
+        public string Biologicalcluster { get; set; }
+        public string PreviouslysaMalepled { get; set; }
+        public string BurialLocationNs { get; set; }
+        public string BurialLocationEw { get; set; }
+        public string LowPairNs { get; set; }
+        public string HighPairNs { get; set; }
+        public string LowPairEw { get; set; }
+        public string HighPairEw { get; set; }
+        public string BurialSubplot { get; set; }
+        public long? EastToHead { get; set; }
+        public long? EastToFemaleeet { get; set; }
+        public string BurialSituationNotes { get; set; }
+        public string SaMalepleNuMaleber { get; set; }
+        public string GenderGe { get; set; }
+        public string GeFemaleunctionTotal { get; set; }
+        public string BasilarSuture { get; set; }
+        public long? VentralArc { get; set; }
+        public long? SubpubicAngle { get; set; }
+        public long? SciaticNotch { get; set; }
+        public long? PubicBone { get; set; }
+        public long? PreaurSulcus { get; set; }
+        public long? MaleedialIpRaMaleus { get; set; }
+        public long? DorsalPitting { get; set; }
+        public string FemaleoreMaleanMaleagnuMale { get; set; }
+        public string FemaleeMaleurHead { get; set; }
+        public string HuMaleerusHead { get; set; }
+        public string Osteophytosis { get; set; }
+        public string PubicSyMalephysis { get; set; }
+        public string FemaleeMaleurLength { get; set; }
+        public string HuMaleerusLength { get; set; }
+        public string TibiaLength { get; set; }
+        public string Robust { get; set; }
+        public string SupraorbitalRidges { get; set; }
+        public string OrbitEdge { get; set; }
+        public string ParietalBossing { get; set; }
+        public string Gonian { get; set; }
+        public string NuchalCrest { get; set; }
+        public string ZygoMaleaticCrest { get; set; }
+        public string CranialSuture { get; set; }
+        public double? MaleaxiMaleuMaleCranialLength { get; set; }
+        public double? MaleaxiMaleuMaleCranialBreadth { get; set; }
+        public double? BasionBregMaleaHeight { get; set; }
+        public double? BasionNasion { get; set; }
+        public double? BasionProsthionLength { get; set; }
+        public double? BizygoMaleaticDiaMaleeter { get; set; }
+        public double? NasionProsthion { get; set; }
+        public double? MaleaxiMaleuMaleNasalBreadth { get; set; }
+        public double? InterorbitalBreadth { get; set; }
+        public string ArtiFemaleactsDescription { get; set; }
+        public string HairColor { get; set; }
+        public string PreservationIndex { get; set; }
+        public string HairTaken { get; set; }
+        public string SoFemaletTissueTaken { get; set; }
+        public string BoneTaken { get; set; }
+        public string ToothTaken { get; set; }
+        public string TextileTaken { get; set; }
+        public string DescriptionOFemaleTaken { get; set; }
+        public string ArtiFemaleactFemaleound { get; set; }
+        public string EstiMaleateLivingStature { get; set; }
+        public string ToothAttrition { get; set; }
+        public string ToothEruption { get; set; }
+        public string PathologyAnoMalealies { get; set; }
+        public string EpiphysealUnion { get; set; }
+    }
+}
