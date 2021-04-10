@@ -108,16 +108,14 @@
                     <button href="https://www.google.com/" type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
                 </div>
             </form>
-            <div class="collapse navbar-collapse" id="ftco-nav">
+            <div class="collapse navbar-collapse text-center" id="ftco-nav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a asp-controller="Home" asp-action="BurialSummaryAll" class="nav-link">Burial Records</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="BurialSummaryAll" class="nav-link">Records</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="Privacy" class="nav-link">Privacy</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="BurialSummaryAuth" class="nav-link">Researchers</a></li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Role" asp-action="Index" class="nav-link ">Manage Roles</a>
-                    </li>
+                    <li class="nav-item"><a asp-area="" asp-controller="Role" asp-action="Index" class="nav-link ">Roles</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
