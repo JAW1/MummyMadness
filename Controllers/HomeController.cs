@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MummyMadness.Models;
 using MummyMadness.Models.ViewModels;
@@ -22,18 +23,19 @@ namespace MummyMadness.Controllers
             _logger = logger;
             context = ctx;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize(Policy = "writepolicy")]
         [HttpGet]
         public IActionResult AddBurial()
         {
             return View();
         }
 
+        [Authorize(Policy = "writepolicy")]
         [HttpPost]
         public IActionResult AddBurial(Official officialForm)
         {
@@ -46,6 +48,7 @@ namespace MummyMadness.Controllers
             });
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 0)
         {
@@ -99,6 +102,7 @@ namespace MummyMadness.Controllers
                 });
             }
         }
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult BurialSummaryAll(string Id)
         {
@@ -110,13 +114,14 @@ namespace MummyMadness.Controllers
             }); ;
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult BurialRecordAll()
         {
             return View();
         }
 
+        [Authorize(Policy = "writepolicy")]
         [HttpGet]
         public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 5)
         {
@@ -171,64 +176,64 @@ namespace MummyMadness.Controllers
             }
         }
 
-            //This passes the itemId to be able to be edited in the Edit view
+        //This passes the itemId to be able to be edited in the Edit view
+        [Authorize(Policy = "writepolicy")]
+        [HttpPost]
+        public IActionResult BurialSummaryAuth(string Id)
+        {
 
-            [HttpPost]
-            public IActionResult BurialSummaryAuth(string Id)
+            return View("BurialRecordAll", new BurialSummaryAllViewModel
             {
+                Burials = context.Officials.Where(x => x.Id == Id),
 
-                return View("BurialRecordAll", new BurialSummaryAllViewModel
-                {
-                    Burials = context.Officials.Where(x => x.Id == Id),
-
-                }); ;
-            }
-
-            [HttpPost]
-            public IActionResult BurialSummaryAuthEdit(string EditId)
+            }); ;
+        }
+        [Authorize(Policy = "writepolicy")]
+        [HttpPost]
+        public IActionResult BurialSummaryAuthEdit(string EditId)
+        {
+            return View("EditBurial", new BurialSummaryAllViewModel
             {
-                return View("EditBurial", new BurialSummaryAllViewModel
-                {
-                    Burials = context.Officials.Where(x => x.Id == EditId)
-                });
-            }
+                Burials = context.Officials.Where(x => x.Id == EditId)
+            });
+        }
+        [Authorize(Policy = "writepolicy")]
+        [HttpPost]
+        public IActionResult EditBurial(Official officialForm, string editedBurial)
+        {
+            var removeBurial = context.Officials.FirstOrDefault(x => x.Id == editedBurial);
+            context.Officials.Add(officialForm);
+            context.Officials.Remove(removeBurial);
+            context.SaveChanges();
 
-            [HttpPost]
-            public IActionResult EditBurial(Official officialForm, string editedBurial)
+            return View("BurialSummaryAuth", new BurialSummaryAllViewModel
             {
-                var removeBurial = context.Officials.FirstOrDefault(x => x.Id == editedBurial);
-                context.Officials.Add(officialForm);
-                context.Officials.Remove(removeBurial);
-                context.SaveChanges();
+                Burials = context.Officials
+            });
+        }
+        [Authorize(Policy = "writepolicy")]
+        [HttpGet]
+        public IActionResult BurialRecordAuth()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult About()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
-                return View("BurialSummaryAuth", new BurialSummaryAllViewModel
-                {
-                    Burials = context.Officials
-                });
-            }
-
-            [HttpGet]
-            public IActionResult BurialRecordAuth()
-            {
-                return View();
-            }
-
-            [HttpGet]
-            public IActionResult About()
-            {
-                return View();
-            }
-
-            public IActionResult Privacy()
-            {
-                return View();
-            }
-
-            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-            public IActionResult Error()
-            {
-                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-            }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
         }
     }
 

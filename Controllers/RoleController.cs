@@ -16,18 +16,18 @@ namespace MummyMadness.Controllers
         {
             this.roleManager = roleManager;
         }
-        [Authorize(Policy = "readpolicy")]
+        [Authorize(Policy = "adminpolicy")]
         public IActionResult Index()
         {
             var roles = roleManager.Roles.ToList();
             return View(roles);
         }
-        [Authorize(Policy = "writepolicy")]
+        [Authorize(Policy = "adminpolicy")]
         public IActionResult Create()
         {
             return View(new IdentityRole());
         }
-
+        [Authorize(Policy = "adminpolicy")]
         [HttpPost]
         public async Task<IActionResult> Create(IdentityRole role)
         {
