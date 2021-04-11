@@ -31,9 +31,9 @@
 
                             {
                                 <tr>
-                                    <td>@x.BurialId </td>
-                                    <td>@x.Burialdepth</td>
-                                    <td>@x.Yearexcav</td>
+                                    <td>@x.Burialid </td>
+                                    <td>@x.BurialDepth</td>
+                                    <td>@x.YearExcav</td>
                                     <td>@x.Burialageatdeath</td>
                                     <td>@x.GenderGe</td>
                                     @*<td>@x.Burialsampletaken</td>*@
@@ -41,7 +41,7 @@
                                     <td>
                                         <!--Buttons to edit and remove items currently in the database-->
                                         <form method="post" asp-action="BurialSummaryAll">
-                                            <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Id">See More</button>
+                                            <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Burialid">See More</button>
                                         </form>
                                     </td>
                                 </tr>

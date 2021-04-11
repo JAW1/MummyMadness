@@ -9,8 +9,8 @@ namespace MummyMania.Components
 {
     public class GenderViewComponent : ViewComponent
     {
-        private OfficialContext context;
-        public GenderViewComponent(OfficialContext ctx)
+        private INTEX2Context context;
+        public GenderViewComponent(INTEX2Context ctx)
         {
             context = ctx;
         }

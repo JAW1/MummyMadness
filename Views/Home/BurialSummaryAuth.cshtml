@@ -34,9 +34,9 @@
 
                             {
                             <tr>
-                                <td>@x.BurialId </td>
-                                <td>@x.Burialdepth</td>
-                                <td>@x.Yearexcav</td>
+                                <td>@x.Burialid </td>
+                                <td>@x.BurialDepth</td>
+                                <td>@x.YearExcav</td>
                                 <td>@x.Burialageatdeath</td>
                                 <td>@x.GenderGe</td>
                                 @*<td>@x.Burialsampletaken</td>*@
@@ -44,18 +44,18 @@
                                 <td>
                                     <!--Buttons to see items currently in the database-->
                                     <form method="post" asp-action="BurialSummaryAuth">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Id">See More</button>
+                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Burialid">See More</button>
                                     </form>
                                 </td>
                                 <td>
                                     <!--Buttons to edit and remove items currently in the database-->
                                     <form method="post" asp-action="BurialSummaryAuthEdit">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="EditId" value="@x.Id">Edit</button>
+                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="EditId" value="@x.Burialid">Edit</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form method="post" asp-action="BurialSummaryAuth">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="DeleteId" value="@x.Id">Delete</button>
+                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="DeleteId" value="@x.Burialid">Delete</button>
                                     </form>
                                 </td>
                             </tr>

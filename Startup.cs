@@ -32,8 +32,11 @@ namespace MummyMadness
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<OfficialContext>(options =>
-                options.UseSqlite(Configuration["ConnectionStrings:INTEXDbConnection"]));
+            services.AddDbContext<INTEX2Context>(options =>
+                options.UseNpgsql(Configuration["ConnectionStrings:INTEXDbConnection"]));
+            //services.AddDbContext<DbContext>(options =>
+            //   options.UseNpgsql(Helpers.GetRDSConnectionString()));
+
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

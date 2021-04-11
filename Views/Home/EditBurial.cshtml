@@ -6,20 +6,20 @@
 @foreach (var x in Model.Burials)
 {
 <form method="post" asp-action="EditBurial">
-    <label asp-for="Officials.BurialId">Burial Location (<i>ex: N 190 E 30 NE 35</i>)</label>
-    <input asp-for="Officials.BurialId" value="@x.BurialId" /><br />
+    <label asp-for="Officials.Burialid">Burial Location (<i>ex: N 190 E 30 NE 35</i>)</label>
+    <input asp-for="Officials.Burialid" value="@x.Burialid" /><br />
 
-    <label asp-for="Officials.Burialdepth">Burial Depth</label>
-    <input asp-for="Officials.Burialdepth" value="@x.Burialdepth" /><br />
+    <label asp-for="Officials.BurialDepth">Burial Depth</label>
+    <input asp-for="Officials.BurialDepth" value="@x.BurialDepth" /><br />
 
-    <label asp-for="Officials.Yearexcav">Year Excavated</label>
-    <input asp-for="Officials.Yearexcav" value="@x.Yearexcav" /><br />
+    <label asp-for="Officials.YearExcav">Year Excavated</label>
+    <input asp-for="Officials.YearExcav" value="@x.YearExcav" /><br />
 
-    <label asp-for="Officials.AgeSkull2018">Age at Death</label> <!--Should it be age of skull?-->
-    <input asp-for="Officials.AgeSkull2018" value="@x.AgeSkull2018" /><br />
+    <label asp-for="Officials.Burialageatdeath">Age at Death</label> <!--Should it be age of skull?-->
+    <input asp-for="Officials.Burialageatdeath" value="@x.Burialageatdeath" /><br />
 
-    <label asp-for="Officials.SaMalepleNuMaleber">Sample Taken</label>
-    <input asp-for="Officials.SaMalepleNuMaleber" value="@x.SaMalepleNuMaleber" /><br />
+    <label asp-for="Officials.Burialsamalepletaken">Sample Taken</label>
+    <input asp-for="Officials.Burialsamalepletaken" value="@x.Burialsamalepletaken" /><br />
 
     <label asp-for="Officials.PreservationIndex">Preservation Index</label>
     <input asp-for="Officials.PreservationIndex" value="@x.PreservationIndex" /><br />
@@ -33,11 +33,11 @@
     <label asp-for="Officials.HairColor">Hair Color</label>
     <input asp-for="Officials.HairColor" value="@x.HairColor" /><br />
 
-    <label asp-for="Officials.EstiMaleateLivingStature">Estimated Living Stature</label>
-    <input asp-for="Officials.EstiMaleateLivingStature" value="@x.EstiMaleateLivingStature" /><br />
+    <label asp-for="Officials.EstimaleateLivingStature">Estimated Living Stature</label>
+    <input asp-for="Officials.EstimaleateLivingStature" value="@x.EstimaleateLivingStature" /><br />
 
-    <label asp-for="Officials.Burialpreservation">Burial Preservation</label>
-    <input asp-for="Officials.Burialpreservation" value="@x.Burialpreservation" /><br />
+    <label asp-for="Officials.BurialPreservation">Burial Preservation</label>
+    <input asp-for="Officials.BurialPreservation" value="@x.BurialPreservation" /><br />
 
     <label asp-for="Officials.GenderGe">Gender</label>
     <select asp-for="Officials.GenderGe" value="@x.GenderGe">
@@ -50,7 +50,7 @@
 
     <div asp-validation-summary="All"></div>
 
-    <button class="btn btn-group-lg btn-outline-success" type="submit" name="editedBurial" value="@x.Id">Submit</button>
+    <button class="btn btn-group-lg btn-outline-success" type="submit" name="editedBurial" value="@x.Burialid">Submit</button>
 </form>
 }
 
