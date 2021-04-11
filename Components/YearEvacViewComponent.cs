@@ -9,20 +9,20 @@ namespace MummyMadness.Components
 {
     public class YearEvacViewComponent : ViewComponent
     {
-        private OfficialContext context;
+        private INTEX2Context context;
 
 
 
-        public YearEvacViewComponent(OfficialContext ctx)
+        public YearEvacViewComponent(INTEX2Context ctx)
         {
             context = ctx;
         }
 
         public IViewComponentResult Invoke()
         {
-            var uniqueYears = context.Officials.Select(x => x.Yearexcav).Distinct().OrderByDescending(x => x);
+            //var uniqueYears = context.Officials.Select(x => x.Yearexcav).Distinct().OrderByDescending(x => x);
 
-            return View(uniqueYears);
+            return View(/*uniqueYears*/);
         }
     }
 }
