@@ -116,6 +116,11 @@ namespace MummyMadness.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Gallery()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 5)
