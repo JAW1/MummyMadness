@@ -12,7 +12,7 @@ namespace MummyMadness.Models.ViewModels
         public PageNumberingInfo PageNumberingInfo { get; set; }
         //public Official Official { get; set; }
 
-        public Official Officials { get; set; }
+        public Official Official { get; set; }
         public string GenderCategory { get; set; }
 
     }

@@ -149,12 +149,12 @@ namespace MummyMadness.Controllers
                 return View(new BurialSummaryAllViewModel
                 {
 
-                    Burial = context.Officials
+                    Burials = context.Officials
                     .Where(x => x.GenderGe == gender || gender == null)
                     //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                     .OrderBy(m => m.GenderGe)
-                    //.Skip((pageNum - 1) * pageSize)
-                    //.Take(pageSize)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
                     .ToList(),
 
 
@@ -180,8 +180,8 @@ namespace MummyMadness.Controllers
                    .Where(x => x.YearExcav == yearEvac || yearEvac == null)
                    //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                    .OrderBy(m => m.YearExcav)
-                   //.Skip((pageNum - 1) * pageSize)
-                   //.Take(pageSize)
+                   .Skip((pageNum - 1) * pageSize)
+                   .Take(pageSize)
                    .ToList(),
 
 
@@ -220,24 +220,55 @@ namespace MummyMadness.Controllers
                 {
                     Burials = context.Officials.Where(x => x.Burialid == EditId)
                 }
-                );
+                ) ;
         }
-        [Authorize(Policy = "writepolicy")]
+        //[Authorize(Policy = "writepolicy")]
         [HttpPost]
-        public IActionResult EditBurial(Official officialForm, int editedBurial)
+        public IActionResult EditBurial(Official official, int editedBurial)
             
         {
-            
+            int pageSize = 100;
+            int pageNum = 1;
             var removeBurial = context.Officials.FirstOrDefault(x => x.Burialid == editedBurial);
             context.Officials.Remove(removeBurial);
-            context.Officials.Add(officialForm);
+            context.Officials.Add(official);
+            
+           
             context.SaveChanges();
 
-            return View("BurialSummaryAuth", new BurialSummaryAllViewModel
-            {
-                Burials = context.Officials
-            });
+
+
+            return View("BurialSummaryAuth", 
+                
+
+                    new BurialSummaryAllViewModel
+                    {
+
+
+                        Burials = context.Officials
+
+                        //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                        .OrderBy(m => m.GenderGe)
+                        .Skip((pageNum - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList(),
+
+
+                        PageNumberingInfo = new PageNumberingInfo
+                        {
+                            NumItemsPerPage = pageSize,
+                            CurrentPage = pageNum,
+                            //    TotalNumItems = (gender == null ? context.Officials.Count() :
+                            //context.Officials.Where(x => x.GenderGe == gender).Count())
+                            TotalNumItems = (context.Officials.Count())
+                        },
+                    }) ;
+            
         }
+                
+
+
+                
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
         public IActionResult BurialRecordAuth()
