@@ -67,9 +67,21 @@ namespace MummyMadness.Controllers
 
         public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 1)
 
-
-
         {
+            string category;
+            if (gender != null)
+            {
+                category = gender;
+            }
+            else if (yearEvac != null)
+            {
+                category = yearEvac;
+            }
+            else
+            {
+                category = null;
+            }
+
             int pageSize = 100;
             if (yearEvac is null)
             {
@@ -87,15 +99,18 @@ namespace MummyMadness.Controllers
 
                     PageNumberingInfo = new PageNumberingInfo
                     {
+                        
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
                     //    TotalNumItems = (gender == null ? context.Officials.Count() :
                     //context.Officials.Where(x => x.GenderGe == gender).Count())
-                        TotalNumItems = (context.Officials.Count())
+                        
+                        TotalNumItems = gender == null ? context.Officials.Count() : 
+                            context.Officials.Where(x => x.GenderGe == gender).Count()
                     },
                     //GenderCategory = sex
 
-                });
+                });;
             }
 
             else
@@ -116,7 +131,9 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        //TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = yearEvac == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.YearExcav == yearEvac).Count()
                     },
                     //GenderCategory = sex
                 });
@@ -289,9 +306,6 @@ namespace MummyMadness.Controllers
             }) ;
 
         }
-
-
-
 
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
