@@ -52,7 +52,7 @@ namespace MummyMadness.Controllers
         [AllowAnonymous]
         [HttpGet]
 
-        public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 5)
+        public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 1)
 
 
 
@@ -67,8 +67,8 @@ namespace MummyMadness.Controllers
                     .Where(x => x.GenderGe == gender || gender == null)
                     //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                     .OrderBy(m => m.GenderGe)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize)
+                    //.Skip((pageNum - 1) * pageSize)
+                    //.Take(pageSize)
                     .ToList(),
 
 
@@ -92,10 +92,10 @@ namespace MummyMadness.Controllers
 
                     Burial = context.Officials
                    .Where(x => x.YearExcav == yearEvac || yearEvac == null)
-                   //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                   //.FromSqlInterpolated($"Select * from Official where YearExcav == {yearEvac}")
                    .OrderBy(m => m.YearExcav)
-                   .Skip((pageNum - 1) * pageSize)
-                   .Take(pageSize)
+                   //.Skip((pageNum - 1) * pageSize)
+                   //.Take(pageSize)
                    .ToList(),
 
 
@@ -153,8 +153,8 @@ namespace MummyMadness.Controllers
                     .Where(x => x.GenderGe == gender || gender == null)
                     //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                     .OrderBy(m => m.GenderGe)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize)
+                    //.Skip((pageNum - 1) * pageSize)
+                    //.Take(pageSize)
                     .ToList(),
 
 
@@ -180,8 +180,8 @@ namespace MummyMadness.Controllers
                    .Where(x => x.YearExcav == yearEvac || yearEvac == null)
                    //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                    .OrderBy(m => m.YearExcav)
-                   .Skip((pageNum - 1) * pageSize)
-                   .Take(pageSize)
+                   //.Skip((pageNum - 1) * pageSize)
+                   //.Take(pageSize)
                    .ToList(),
 
 
