@@ -189,7 +189,7 @@ namespace MummyMadness.Controllers
                 
                 {
 
-                    Burial = context.Officials
+                    Burials = context.Officials
                    .Where(x => x.YearExcav == yearEvac || yearEvac == null)
                    //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                    .OrderBy(m => m.YearExcav)
@@ -246,45 +246,53 @@ namespace MummyMadness.Controllers
             int pageSize = 100;
             int pageNum = 1;
             var removeBurial = context.Officials.FirstOrDefault(x => x.Burialid == editedBurial);
+            official.Burialid = removeBurial.Burialid;
+            //var addBurial = context.Officials.FirstOrDefault(x => x.Burialid == official.Burialid);
+            
             context.Officials.Remove(removeBurial);
             context.Officials.Add(official);
             
-           
+            
+            
+
+
+
             context.SaveChanges();
 
 
 
-            return View("BurialSummaryAuth", 
+            return View("BurialRecordAuth",
+
+
+            new BurialSummaryAllViewModel
+            {
+
+
+                Burials = context.Officials
+
+                //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
                 
-
-                    new BurialSummaryAllViewModel
-                    {
-
-
-                        Burials = context.Officials
-
-                        //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
-                        .OrderBy(m => m.GenderGe)
-                        .Skip((pageNum - 1) * pageSize)
-                        .Take(pageSize)
-                        .ToList(),
+                .OrderBy(m => m.GenderGe)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList(),
 
 
-                        PageNumberingInfo = new PageNumberingInfo
-                        {
-                            NumItemsPerPage = pageSize,
-                            CurrentPage = pageNum,
-                            //    TotalNumItems = (gender == null ? context.Officials.Count() :
-                            //context.Officials.Where(x => x.GenderGe == gender).Count())
-                            TotalNumItems = (context.Officials.Count())
-                        },
-                    }) ;
-            
+                PageNumberingInfo = new PageNumberingInfo
+                {
+                    NumItemsPerPage = pageSize,
+                    CurrentPage = pageNum,
+                    //    TotalNumItems = (gender == null ? context.Officials.Count() :
+                    //context.Officials.Where(x => x.GenderGe == gender).Count())
+                    TotalNumItems = (context.Officials.Count())
+                },
+            }) ;
+
         }
-                
 
 
-                
+
+
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
         public IActionResult BurialRecordAuth()
