@@ -29,24 +29,37 @@ namespace MummyMadness.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public IActionResult ChangesConfirmed()
+        {
+            return View();
+        }
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
         public IActionResult AddBurial()
         {
             return View();
         }
+        [Authorize(Policy = "writepolicy")]
+        [HttpPost]
+        public IActionResult AddBurial(Official m)
+        {
+            var rand = new Random();
+            m.Burialid = rand.Next();
+            context.Officials.Add(m);
+            context.SaveChanges();
+            //return View("Movies");
+            return View("ChangesConfirmed");
+        }
 
         [Authorize(Policy = "writepolicy")]
         [HttpPost]
-        public IActionResult AddBurial(Official officialForm)
+        public IActionResult DeleteBurial(int DeleteId)
         {
-            context.Officials.Add(officialForm);
+            var removeItem = context.Officials.FirstOrDefault(x => x.Burialid == DeleteId);
+            context.Officials.Remove(removeItem);
             context.SaveChanges();
-
-            return View("BurialSummaryAuth", new BurialSummaryAllViewModel
-            {
-                Burials = context.Officials
-            });
+            return View("ChangesConfirmed");
         }
 
         [AllowAnonymous]
@@ -195,6 +208,9 @@ namespace MummyMadness.Controllers
                 });
             }
         }
+
+
+
 
         //This passes the itemId to be able to be edited in the Edit view
         [Authorize(Policy = "writepolicy")]
