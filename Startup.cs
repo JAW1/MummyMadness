@@ -70,7 +70,8 @@ namespace MummyMadness
                 //password settings
                 options.Password.RequiredLength = 8;
                 options.Password.RequireDigit = true;
-                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
 
                 //lockout settings
                 options.Lockout.MaxFailedAccessAttempts = 5;
