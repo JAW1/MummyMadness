@@ -1,1 +1,67 @@
-﻿
+﻿@model BurialSummaryAllViewModel
+
+<h1>Record Summary</h1>
+<div class="text-left">
+    <!--This page iterates through all of items in the Bowlers table from the database that comes from the IEnumerable in the View Model-->
+    <div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-1"></div>
+
+                <div class="col-10">
+
+                    @foreach (var x in Model.Burials)
+
+                    {
+                        <h3 class="bluebunny">Excavation Data for Burial - @x.BurialId1 </h3>
+
+                        <ul>
+                            <li>Burial Depth: @x.BurialDepth</li>
+                            <li>Year Excavated: @x.YearExcav</li>
+                            <li>Age at Death: @x.Burialageatdeath</li>
+                            <li>Sample Taken: @x.Burialsamalepletaken</li>
+                            <li>Preservation Index: @x.PreservationIndex</li>
+                            <li>Description: @x.Description</li>
+                            <li>Situation Notes: @x.BurialSituationNotes</li>
+                            <li>Hair Color: @x.HairColor</li>
+                            <li>Hair Taken: @x.HairTaken</li>
+                            <li>Bone Taken: @x.BoneTaken</li>
+                            <li>Estimated Living Stature: @x.EstimaleateLivingStature</li>
+                            <li>Burial Preservation: @x.BurialPreservation</li>
+                            <li>Burial Wrapping: @x.BurialWrapping</li>
+                            <li>Burial Adult/Child: @x.BurialAdultChild</li>
+                            <li>Gender Code: @x.GenderCode</li>
+                            <li>Gender: @x.GenderGe</li>
+                            <li>Age Code: @x.AgeCodeSingle</li>
+                            <li>Burial Direction: @x.BurialDirection</li>
+                            <li>Cluster: @x.Cluster</li>
+                            <li>East to Head: @x.EastToHead</li>
+                            <li>Ventral Arc: @x.VentralArc</li>
+                            <li>Subpubic Angle: @x.SubpubicAngle</li>
+                            <li>Sciatic Notch: @x.SciaticNotch</li>
+                            <li>Pubic Bone: @x.PubicBone</li>
+                            <li>Preaur Sulcus: @x.PreaurSulcus</li>
+                            <li>Maleedial IP Ramaleus: @x.MaleedialIpRamaleus</li>
+                            <li>Dorsal Pitting: @x.DorsalPitting</li>
+                            <li>Female Maleur Head: @x.FemaleemaleurHead</li>
+                            <li>Humaleerus Head: @x.HumaleerusHead</li>
+                            <li>Osteophytosis: @x.Osteophytosis</li>
+                            <li>Supraorbital Ridges: @x.SupraorbitalRidges</li>
+                            <li>Oribt Edge: @x.OrbitEdge</li>
+                            <li>Parietal Bossing: @x.ParietalBossing</li>
+                            <li>Gonian: @x.Gonian</li>
+                            <li>Nuchal Crest: @x.NuchalCrest</li>
+                            <li>Zygo Maleatic Crest: @x.ZygomaleaticCrest</li>
+                            <li>Cranial Suture: @x.CranialSuture</li>
+                            <li>Tooth Taken: @x.ToothTaken</li>
+                            <li>Tooth Attrition: @x.ToothAttrition</li>
+                            <li>Tooth Eruption: @x.ToothEruption</li>
+                        </ul>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

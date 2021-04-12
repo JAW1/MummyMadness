@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MummyMadness.Infrastructure
+namespace MummyMania.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-info")]
     public class PaginationTagHelper : TagHelper
@@ -21,10 +21,14 @@ namespace MummyMadness.Infrastructure
         }
 
         public PageNumberingInfo PageInfo { get; set; }
-        public string Sex { get; set; }
+        //public string Sex { get; set; }
         //Our own dictionary of key value pairs
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> KeyValuePairs { get; set; } = new Dictionary<string, object>();
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
         [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
@@ -41,9 +45,13 @@ namespace MummyMadness.Infrastructure
 
                 KeyValuePairs["pageNum"] = i;
                 individualTag.Attributes["href"] = urlHelp.Action("BurialSummaryAll", KeyValuePairs);
-                individualTag.InnerHtml.Append(i.ToString());
 
+                individualTag.AddCssClass(PageClass);
+                individualTag.AddCssClass(i == PageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
+
+                individualTag.InnerHtml.Append(i.ToString());
                 finishedTag.InnerHtml.AppendHtml(individualTag);
+                individualTag.InnerHtml.AppendHtml(finishedTag);
             }
 
             output.Content.AppendHtml(finishedTag.InnerHtml);

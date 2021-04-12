@@ -51,14 +51,18 @@ namespace MummyMadness.Controllers
 
         [AllowAnonymous]
         [HttpGet]
+
         public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 5)
+
+
+
         {
             int pageSize = 100;
             if (yearEvac is null)
             {
                 return View(new BurialSummaryAllViewModel
                 {
-
+                        
                     Burial = context.Officials
                     .Where(x => x.GenderGe == gender || gender == null)
                     //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
@@ -133,7 +137,11 @@ namespace MummyMadness.Controllers
 
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
-        public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 5)
+
+        
+
+        public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 1)
+
         {
             int pageSize = 100;
             if (yearEvac is null)
@@ -163,9 +171,9 @@ namespace MummyMadness.Controllers
 
             else
             {
-                return View();
+                return View(new BurialSummaryAllViewModel
 
-                new BurialSummaryAllViewModel
+                
                 {
 
                     Burial = context.Officials
@@ -184,7 +192,7 @@ namespace MummyMadness.Controllers
                         TotalNumItems = (context.Officials.Count())
                     },
                     //GenderCategory = sex
-                };
+                });
             }
         }
 
