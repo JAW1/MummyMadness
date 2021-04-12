@@ -42,7 +42,7 @@ namespace MummyMadness.Models
         public string BurialNumaleber { get; set; }
         public string BurialWesttohead { get; set; }
         public string BurialWesttofemaleeet { get; set; }
-        public string BurialSouthtohead { get; set; }
+        public string BurialSouthtohead { get; set; } 
         public string BurialSouthtofemaleeet { get; set; }
         public string BurialDepth { get; set; }
         public string Length { get; set; }
