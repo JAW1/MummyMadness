@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MummyMadness.Models;
 using MummyMadness.Models.ViewModels;
@@ -50,7 +51,11 @@ namespace MummyMadness.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult BurialSummaryAll(string gender, string? yearEvac, int pageNum = 1)
+
+        public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 5)
+
+
+
         {
             int pageSize = 100;
             if (yearEvac is null)
@@ -71,6 +76,8 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
+                    //    TotalNumItems = (gender == null ? context.Officials.Count() :
+                    //context.Officials.Where(x => x.GenderGe == gender).Count())
                         TotalNumItems = (context.Officials.Count())
                     },
                     //GenderCategory = sex
@@ -130,7 +137,11 @@ namespace MummyMadness.Controllers
 
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
+
+        
+
         public IActionResult BurialSummaryAuth(string? gender, string? yearEvac, int pageNum = 1)
+
         {
             int pageSize = 100;
             if (yearEvac is null)
@@ -166,12 +177,12 @@ namespace MummyMadness.Controllers
                 {
 
                     Burial = context.Officials
-               .Where(x => x.YearExcav == yearEvac || yearEvac == null)
-               //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
-               .OrderBy(m => m.YearExcav)
-               .Skip((pageNum - 1) * pageSize)
-               .Take(pageSize)
-               .ToList(),
+                   .Where(x => x.YearExcav == yearEvac || yearEvac == null)
+                   //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
+                   .OrderBy(m => m.YearExcav)
+                   .Skip((pageNum - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList(),
 
 
                     PageNumberingInfo = new PageNumberingInfo

@@ -20,9 +20,9 @@ namespace MummyMadness.Components
 
         public IViewComponentResult Invoke()
         {
-            //var uniqueYears = context.Officials.Select(x => x.Yearexcav).Distinct().OrderByDescending(x => x);
+            //int uniqueYears = context.Officials.Select(x => x.YearExcav).Distinct().OrderByDescending(x => x);
 
-            return View(/*uniqueYears*/);
+            return View(context.Officials.Select(x => x.YearExcav).Distinct().OrderByDescending(x => x));
         }
     }
 }
