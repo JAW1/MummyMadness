@@ -46,9 +46,7 @@ namespace MummyMadness.Models
         public string BurialSouthtofemaleeet { get; set; }
         public string BurialDepth { get; set; }
         public string Length { get; set; }
-
         public string? YearExcav { get; set; }
-
         public string MaleonthExcavated { get; set; }
         public string DateExcavated { get; set; }
         public string BurialPreservation { get; set; }
@@ -85,7 +83,7 @@ namespace MummyMadness.Models
         public string EastToFemaleeet { get; set; }
         public string BurialSituationNotes { get; set; }
         public string SamalepleNumaleber { get; set; }
-        public string GenderGe { get; set; }
+        public string? GenderGe { get; set; }
         public string GeFemaleunctionTotal { get; set; }
         public string BasilarSuture { get; set; }
         public string VentralArc { get; set; }
