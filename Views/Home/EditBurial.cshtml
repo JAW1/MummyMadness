@@ -40,8 +40,8 @@
     <input asp-for="Official.BurialPreservation" value="@x.BurialPreservation" /><br />
 
     <label asp-for="Official.GenderGe">Gender</label>
-    <select asp-for="Official.GenderGe" value="@x.GenderGe">
-        <option value=""></option>
+    <select asp-for="Official.GenderGe" >
+        <option value="@x.GenderGe">@x.GenderGe</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Undetermined">Undetermined</option>
