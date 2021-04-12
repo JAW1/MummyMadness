@@ -3,6 +3,7 @@
 <div class="text-center">
 
     <h1>Burial Summary</h1>
+    100 records per page
     <h2>@Model.GenderCategory</h2><br />
     <!--This page iterates through all of items in the Bowlers table from the database that comes from the IEnumerable in the View Model-->
     <div>
@@ -33,32 +34,32 @@
                             @foreach (var x in Model.Burial)
 
                             {
-                            <tr>
-                                <td>@x.Burialid </td>
-                                <td>@x.BurialDepth</td>
-                                <td>@x.YearExcav</td>
-                                <td>@x.Burialageatdeath</td>
-                                <td>@x.GenderGe</td>
-                                @*<td>@x.Burialsampletaken</td>*@
-                                <td>@x.PreservationIndex</td>
-                                <td>
-                                    <!--Buttons to see items currently in the database-->
-                                    <form method="post" asp-action="BurialSummaryAuth">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Burialid">See More</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <!--Buttons to edit and remove items currently in the database-->
-                                    <form method="post" asp-action="BurialSummaryAuthEdit">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="EditId" value="@x.Burialid">Edit</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" asp-action="BurialSummaryAuth">
-                                        <button class="btn btn-group-sm btn-secondary" type="submit" name="DeleteId" value="@x.Burialid">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@x.BurialId1 </td>
+                                    <td>@x.BurialDepth</td>
+                                    <td>@x.YearExcav</td>
+                                    <td>@x.Burialageatdeath</td>
+                                    <td>@x.GenderGe</td>
+                                    <td>@x.Burialsamalepletaken</td>
+                                    <td>@x.PreservationIndex</td>
+                                    <td>
+                                        <!--Buttons to see items currently in the database-->
+                                        <form method="post" asp-action="BurialSummaryAuth">
+                                            <button class="btn btn-group-sm btn-secondary" type="submit" name="Id" value="@x.Burialid">See More</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <!--Buttons to edit and remove items currently in the database-->
+                                        <form method="post" asp-action="BurialSummaryAuthEdit">
+                                            <button class="btn btn-group-sm btn-secondary" type="submit" name="EditId" value="@x.Burialid">Edit</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" asp-action="BurialSummaryAuth">
+                                            <button class="btn btn-group-sm btn-secondary" type="submit" name="DeleteId" value="@x.Burialid">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -66,6 +67,7 @@
             </div>
         </div>
     </div>
-    Page: <div page-info="@Model.PageNumberingInfo" sex="@Model.GenderCategory" page-url-sex="@Model.GenderCategory"></div>
+    Page: <div page-info="@Model.PageNumberingInfo" sex="@Model.GenderCategory" page-url-sex="@Model.GenderCategory" page-class="btn"
+               page-class-normal="btn-outline-dark" page-class-selected="btn-secondary" class=" btn-group m-1 center"></div>
 
 </div>

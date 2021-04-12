@@ -46,7 +46,7 @@ namespace MummyMadness.Models
         public string BurialSouthtofemaleeet { get; set; }
         public string BurialDepth { get; set; }
         public string Length { get; set; }
-        public int? YearExcav { get; set; }
+        public string? YearExcav { get; set; }
         public string MaleonthExcavated { get; set; }
         public string DateExcavated { get; set; }
         public string BurialPreservation { get; set; }
