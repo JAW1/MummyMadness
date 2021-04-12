@@ -48,7 +48,6 @@ namespace MummyMadness.Controllers
             m.Burialid = rand.Next();
             context.Officials.Add(m);
             context.SaveChanges();
-            //return View("Movies");
             return View("ChangesConfirmed");
         }
 
@@ -271,11 +270,6 @@ namespace MummyMadness.Controllers
             
             context.Officials.Remove(removeBurial);
             context.Officials.Add(official);
-            
-            
-            
-
-
 
             context.SaveChanges();
 
