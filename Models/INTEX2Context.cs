@@ -17,11 +17,21 @@ namespace MummyMadness.Models
         {
         }
 
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual DbSet<Biosample> Biosamples { get; set; }
+        public virtual DbSet<C14datum> C14data { get; set; }
+        public virtual DbSet<Cranial> Cranials { get; set; }
         public virtual DbSet<Official> Officials { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)//!
+            if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("Host=mummygummy.cuy6cls8yekj.us-east-1.rds.amazonaws.com;Port=5432;Username=postgres;Password=MummyIntexRox!312;database=INTEX2");
@@ -32,10 +42,337 @@ namespace MummyMadness.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "en_US.UTF-8");
 
+            modelBuilder.Entity<AspNetRole>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                    .IsUnique();
+
+                entity.Property(e => e.Name).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<AspNetRoleClaim>(entity =>
+            {
+                entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
+
+                entity.Property(e => e.RoleId).IsRequired();
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.AspNetRoleClaims)
+                    .HasForeignKey(d => d.RoleId);
+            });
+
+            modelBuilder.Entity<AspNetUser>(entity =>
+            {
+                entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
+
+                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                    .IsUnique();
+
+                entity.Property(e => e.Email).HasMaxLength(256);
+
+                entity.Property(e => e.LockoutEnd).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+
+                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+
+                entity.Property(e => e.UserName).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<AspNetUserClaim>(entity =>
+            {
+                entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
+
+                entity.Property(e => e.UserId).IsRequired();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserClaims)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUserLogin>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+
+                entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
+
+                entity.Property(e => e.UserId).IsRequired();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserLogins)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUserRole>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.RoleId });
+
+                entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.AspNetUserRoles)
+                    .HasForeignKey(d => d.RoleId);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserRoles)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<AspNetUserToken>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.AspNetUserTokens)
+                    .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<Biosample>(entity =>
+            {
+                entity.HasKey(e => e.Burialid)
+                    .HasName("biosamples_pkey");
+
+                entity.ToTable("biosamples");
+
+                entity.Property(e => e.Burialid)
+                    .ValueGeneratedNever()
+                    .HasColumnName("burialid");
+
+                entity.Property(e => e.Area)
+                    .HasColumnType("character varying")
+                    .HasColumnName("area");
+
+                entity.Property(e => e.Bag)
+                    .HasColumnType("character varying")
+                    .HasColumnName("bag");
+
+                entity.Property(e => e.Burial)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial");
+
+                entity.Property(e => e.Cluster)
+                    .HasColumnType("character varying")
+                    .HasColumnName("cluster_");
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("character varying")
+                    .HasColumnName("date_");
+
+                entity.Property(e => e.EW)
+                    .HasColumnType("character varying")
+                    .HasColumnName("e_w");
+
+                entity.Property(e => e.High1).HasColumnName("high1");
+
+                entity.Property(e => e.High2).HasColumnName("high2");
+
+                entity.Property(e => e.Initials)
+                    .HasColumnType("character varying")
+                    .HasColumnName("initials");
+
+                entity.Property(e => e.Low1).HasColumnName("low1");
+
+                entity.Property(e => e.Low2).HasColumnName("low2");
+
+                entity.Property(e => e.NS)
+                    .HasColumnType("character varying")
+                    .HasColumnName("n_s");
+
+                entity.Property(e => e.Notes)
+                    .HasColumnType("character varying")
+                    .HasColumnName("notes");
+
+                entity.Property(e => e.PreviouslySampled)
+                    .HasColumnType("character varying")
+                    .HasColumnName("previously_sampled");
+
+                entity.Property(e => e.Rack).HasColumnName("rack");
+            });
+
+            modelBuilder.Entity<C14datum>(entity =>
+            {
+                entity.HasKey(e => e.Burialid)
+                    .HasName("c14data_pkey");
+
+                entity.ToTable("c14data");
+
+                entity.Property(e => e.Burialid)
+                    .ValueGeneratedNever()
+                    .HasColumnName("burialid");
+
+                entity.Property(e => e.Area).HasColumnName("area");
+
+                entity.Property(e => e.Burial).HasColumnName("burial");
+
+                entity.Property(e => e.BurialId1)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_id");
+
+                entity.Property(e => e.C14Sample2017).HasColumnName("c14_sample_2017");
+
+                entity.Property(e => e.Calibrated95CalendarDateAvg)
+                    .HasColumnType("character varying")
+                    .HasColumnName("calibrated_95_calendar_date_avg");
+
+                entity.Property(e => e.Calibrated95CalendarDateMax).HasColumnName("calibrated_95_calendar_date_max");
+
+                entity.Property(e => e.Calibrated95CalendarDateMin).HasColumnName("calibrated_95_calendar_date_min");
+
+                entity.Property(e => e.Calibrated95CalendarDateSpan).HasColumnName("calibrated_95_calendar_date_span");
+
+                entity.Property(e => e.Category)
+                    .HasColumnType("character varying")
+                    .HasColumnName("category");
+
+                entity.Property(e => e.Conventional14cAgeBp)
+                    .HasColumnType("character varying")
+                    .HasColumnName("conventional_14c_age_bp");
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("character varying")
+                    .HasColumnName("description");
+
+                entity.Property(e => e.E)
+                    .HasColumnType("character varying")
+                    .HasColumnName("e");
+
+                entity.Property(e => e.EW)
+                    .HasColumnType("character varying")
+                    .HasColumnName("e_w");
+
+                entity.Property(e => e.Foci).HasColumnName("foci");
+
+                entity.Property(e => e.FourteencCalendarDate)
+                    .HasColumnType("character varying")
+                    .HasColumnName("fourteenc_calendar_date");
+
+                entity.Property(e => e.Location)
+                    .HasColumnType("character varying")
+                    .HasColumnName("location");
+
+                entity.Property(e => e.N)
+                    .HasColumnType("character varying")
+                    .HasColumnName("n");
+
+                entity.Property(e => e.NS).HasColumnName("n_s");
+
+                entity.Property(e => e.Notes)
+                    .HasColumnType("character varying")
+                    .HasColumnName("notes");
+
+                entity.Property(e => e.Question)
+                    .HasColumnType("character varying")
+                    .HasColumnName("question");
+
+                entity.Property(e => e.Rack).HasColumnName("rack");
+
+                entity.Property(e => e.SizeMl).HasColumnName("size_ml");
+
+                entity.Property(e => e.Square)
+                    .HasColumnType("character varying")
+                    .HasColumnName("square");
+
+                entity.Property(e => e.Tube).HasColumnName("tube");
+            });
+
+            modelBuilder.Entity<Cranial>(entity =>
+            {
+                entity.HasKey(e => e.Burialid)
+                    .HasName("cranial_pkey");
+
+                entity.ToTable("cranial");
+
+                entity.Property(e => e.Burialid)
+                    .ValueGeneratedNever()
+                    .HasColumnName("burialid");
+
+                entity.Property(e => e.BasionBregmaHeight)
+                    .HasColumnType("character varying")
+                    .HasColumnName("basion_bregma_height");
+
+                entity.Property(e => e.BasionNasion)
+                    .HasColumnType("character varying")
+                    .HasColumnName("basion_nasion");
+
+                entity.Property(e => e.BasionProsthionLength)
+                    .HasColumnType("character varying")
+                    .HasColumnName("basion_prosthion_length");
+
+                entity.Property(e => e.BizygomaticDiameter)
+                    .HasColumnType("character varying")
+                    .HasColumnName("bizygomatic_diameter");
+
+                entity.Property(e => e.Bodygender)
+                    .HasColumnType("character varying")
+                    .HasColumnName("bodygender");
+
+                entity.Property(e => e.BurialArtifactDescription)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_artifact_description");
+
+                entity.Property(e => e.BurialDepth)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_depth");
+
+                entity.Property(e => e.BurialNumber).HasColumnName("burial_number");
+
+                entity.Property(e => e.BurialPositioningEastNumber).HasColumnName("burial_positioning_east_number");
+
+                entity.Property(e => e.BurialPositioningEastwestDirection)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_positioning_eastwest_direction");
+
+                entity.Property(e => e.BurialPositioningNorthNumber).HasColumnName("burial_positioning_north_number");
+
+                entity.Property(e => e.BurialPositioningNorthsouthDirection)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_positioning_northsouth_direction");
+
+                entity.Property(e => e.BurialPositioningSouthNumber).HasColumnName("burial_positioning_south_number");
+
+                entity.Property(e => e.BurialPositioningWestNumber).HasColumnName("burial_positioning_west_number");
+
+                entity.Property(e => e.BurialSubplotDirection)
+                    .HasColumnType("character varying")
+                    .HasColumnName("burial_subplot_direction");
+
+                entity.Property(e => e.Buriedwithartifacts)
+                    .HasColumnType("character varying")
+                    .HasColumnName("buriedwithartifacts");
+
+                entity.Property(e => e.Gilesgender)
+                    .HasColumnType("character varying")
+                    .HasColumnName("gilesgender");
+
+                entity.Property(e => e.InterorbitalBreadth)
+                    .HasColumnType("character varying")
+                    .HasColumnName("interorbital_breadth");
+
+                entity.Property(e => e.MaximumCranialBreadth)
+                    .HasColumnType("character varying")
+                    .HasColumnName("maximum_cranial_breadth");
+
+                entity.Property(e => e.MaximumCranialLength)
+                    .HasColumnType("character varying")
+                    .HasColumnName("maximum_cranial_length");
+
+                entity.Property(e => e.MaximumNasalBreadth)
+                    .HasColumnType("character varying")
+                    .HasColumnName("maximum_nasal_breadth");
+
+                entity.Property(e => e.NasionProsthion)
+                    .HasColumnType("character varying")
+                    .HasColumnName("nasion_prosthion");
+
+                entity.Property(e => e.SampleNumber).HasColumnName("sample_number");
+            });
+
             modelBuilder.Entity<Official>(entity =>
             {
                 entity.HasKey(e => e.Burialid)
-                    .HasName("official_pkey");
+                    .HasName("official_edited_pkey");
 
                 entity.ToTable("official");
 
