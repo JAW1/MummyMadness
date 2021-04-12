@@ -1,19 +1,19 @@
-﻿
-@model BurialSummaryAllViewModel
+﻿@model BurialSummaryAllViewModel
 
 <div class="text-center">
 
     <h1>Burial Summary</h1>
-    100 records per page<br />
-    <a type="button" asp-action="AddBurial">Add Burial Record</a>
+    100 records per page
     <h2>@Model.GenderCategory</h2><br />
     <!--This page iterates through all of items in the Bowlers table from the database that comes from the IEnumerable in the View Model-->
     <div>
         <div>
             <div class="row">
-
+                <div class="col-4">
+                    <a type="button" asp-action="AddBurial">Add Burial Record</a>
+                </div>
                 <div class="col-2">
-                    <vc:gender></vc:gender>
+                    <vc:gender></vc:gender><br />
                     <vc:year-evac></vc:year-evac>
                 </div>
 
@@ -40,10 +40,7 @@
                                     <td>@x.YearExcav</td>
                                     <td>@x.Burialageatdeath</td>
                                     <td>@x.GenderGe</td>
-
-
                                     <td>@x.Burialsamalepletaken</td>
-
                                     <td>@x.PreservationIndex</td>
                                     <td>
                                         <!--Buttons to see items currently in the database-->
