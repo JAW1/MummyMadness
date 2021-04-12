@@ -192,7 +192,9 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        //TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = gender == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.GenderGe == gender).Count()
                     },
                     //GenderCategory = sex
 
@@ -219,7 +221,8 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = yearEvac == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.YearExcav == yearEvac).Count()
                     },
                     //GenderCategory = sex
                 });
