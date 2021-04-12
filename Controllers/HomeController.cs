@@ -227,7 +227,7 @@ namespace MummyMadness.Controllers
         public IActionResult EditBurial(Official officialForm, int editedBurial)
             
         {
-            return View();
+            
             var removeBurial = context.Officials.FirstOrDefault(x => x.Burialid == editedBurial);
             context.Officials.Add(officialForm);
             context.Officials.Remove(removeBurial);
