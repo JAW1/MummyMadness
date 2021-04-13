@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace MummyMadness.Controllers
 {
 
-    //I need to still add in authorization based on the policies (pretty easy)
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
