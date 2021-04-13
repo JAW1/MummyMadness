@@ -19,125 +19,191 @@
     <input asp-for="Official.Burialageatdeath" value="@x.Burialageatdeath" /><br />
 
     <label asp-for="Official.Burialsamalepletaken">Sample Taken</label>
-    <input asp-for="Official.Burialsamalepletaken" value="@x.Burialsamalepletaken" /><br />
+    <select asp-for="Official.Burialsamalepletaken">
+        <option value="@x.Burialsamalepletaken">@x.Burialsamalepletaken</option>
+        <option value="True">True</option>
+        <option value="False">False</option>
+        </select>
+        <br />
 
-    <label asp-for="Official.PreservationIndex">Preservation Index</label>
-    <input asp-for="Official.PreservationIndex" value="@x.PreservationIndex" /><br />
+        <label asp-for="Official.PreservationIndex">Preservation Index</label>
+        <input asp-for="Official.PreservationIndex" value="@x.PreservationIndex" />
+        <br />
 
-    <label asp-for="Official.Description">Description</label>
-    <input asp-for="Official.Description" value="@x.Description" /><br />
+        <label asp-for="Official.Description">Description</label>
+        <input asp-for="Official.Description" value="@x.Description" />
+        <br />
 
-    <label asp-for="Official.BurialSituationNotes">Situation Notes</label>
-    <input asp-for="Official.BurialSituationNotes" value="@x.BurialSituationNotes" /><br />
+        <label asp-for="Official.BurialSituationNotes">Situation Notes</label>
+        <input asp-for="Official.BurialSituationNotes" value="@x.BurialSituationNotes" />
+        <br />
 
-    <label asp-for="Official.HairColor">Hair Color</label>
-    <input asp-for="Official.HairColor" value="@x.HairColor" /><br />
+        <label asp-for="Official.HairColor">Hair Color</label>
+        <input asp-for="Official.HairColor" value="@x.HairColor" />
+        <br />
 
-    <label asp-for="Official.HairTaken">Hair Color</label>
-    <input asp-for="Official.HairTaken" value="@x.HairTaken" /><br />
+        <label asp-for="Official.HairTaken">Hair Color</label>
+        <select asp-for="Official.HairTaken">
+            <option value="@x.HairTaken">@x.HairTaken</option>
+            <option value="True">True</option>
+            <option value="False">False</option>
 
-    <label asp-for="Official.BoneTaken">Hair Color</label>
-    <input asp-for="Official.BoneTaken" value="@x.BoneTaken" /><br />
+        </select>
+        <br />
+
+        <label asp-for="Official.BoneTaken">Hair Color</label>
+        <input asp-for="Official.BoneTaken" value="@x.BoneTaken" />
+        <br />
 
 
-    <label asp-for="Official.EstimaleateLivingStature">Estimated Living Stature</label>
-    <input asp-for="Official.EstimaleateLivingStature" value="@x.EstimaleateLivingStature" /><br />
+        <label asp-for="Official.EstimaleateLivingStature">Estimated Living Stature</label>
+        <input asp-for="Official.EstimaleateLivingStature" value="@x.EstimaleateLivingStature" />
+        <br />
 
-    <label asp-for="Official.BurialPreservation">Burial Preservation</label>
-    <input asp-for="Official.BurialPreservation" value="@x.BurialPreservation" /><br />
+        <label asp-for="Official.BurialPreservation">Burial Preservation</label>
+        <input asp-for="Official.BurialPreservation" value="@x.BurialPreservation" />
+        <br />
 
-    <label asp-for="Official.BurialWrapping">Burial Wrapping</label>
-    <input asp-for="Official.BurialWrapping" value="@x.BurialWrapping" /><br />
+        <label asp-for="Official.BurialWrapping">Burial Wrapping</label>
+        <input asp-for="Official.BurialWrapping" value="@x.BurialWrapping" />
+        <br />
 
-    <label asp-for="Official.BurialAdultChild">Burial Adult/Child</label>
-    <input asp-for="Official.BurialAdultChild" value="@x.BurialAdultChild" /><br />
+        <label asp-for="Official.BurialAdultChild">Burial Adult/Child</label>
+        <input asp-for="Official.BurialAdultChild" value="@x.BurialAdultChild" />
+        <br />
 
-    <label asp-for="Official.GenderCode">Gender Code</label>
-    <input asp-for="Official.GenderCode" value="@x.GenderCode" /><br />
+        <label asp-for="Official.GenderCode">Gender Code</label>
+        <input asp-for="Official.GenderCode" value="@x.GenderCode" />
+        <br />
 
-    <label asp-for="Official.GenderGe">Gender</label>
-    <select asp-for="Official.GenderGe">
-        <option value="@x.GenderGe">@x.GenderGe</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Undetermined">Undetermined</option>
-    </select><br />
+        <label asp-for="Official.GenderGe">Gender</label>
+        <select asp-for="Official.GenderGe">
+            <option value="@x.GenderGe">@x.GenderGe</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Undetermined">Undetermined</option>
+        </select>
+        <br />
 
-    <label asp-for="Official.AgeCodeSingle">Age Code</label>
-    <input asp-for="Official.AgeCodeSingle" value="@x.AgeCodeSingle" /><br />
+        <label asp-for="Official.AgeCodeSingle">Age Code</label>
+        <input asp-for="Official.AgeCodeSingle" value="@x.AgeCodeSingle" />
+        <br />
 
-    <label asp-for="Official.BurialDirection">Burial Direction</label>
-    <input asp-for="Official.BurialDirection" value="@x.BurialDirection" /><br />
+        <label asp-for="Official.BurialDirection">Burial Direction</label>
+        <select asp-for="Official.BurialDirection">
+            <option value="@x.BurialDirection">@x.HairTaken</option>
+            <option value="North">North</option>
+            <option value="South">South</option>
+            <option value="East">East</option>
+            <option value="West">West</option>
 
-    <label asp-for="Official.Cluster">Cluster</label>
-    <input asp-for="Official.Cluster" value="@x.Cluster" /><br />
+        </select>
+        <br />
 
-    <label asp-for="Official.EastToHead">East to Head</label>
-    <input asp-for="Official.EastToHead" value="@x.EastToHead" /><br />
+        <label asp-for="Official.Cluster">Cluster</label>
+        <input asp-for="Official.Cluster" value="@x.Cluster" />
+        <br />
 
-    <label asp-for="Official.VentralArc">Ventral Arc</label>
-    <input asp-for="Official.VentralArc" value="@x.VentralArc" /><br />
+        <label asp-for="Official.EastToHead">East to Head</label>
+        <input asp-for="Official.EastToHead" value="@x.EastToHead" />
+        <br />
 
-    <label asp-for="Official.SubpubicAngle">Subpubic Angle</label>
-    <input asp-for="Official.SubpubicAngle" value="@x.SubpubicAngle" /><br />
+        <label asp-for="Official.VentralArc">Ventral Arc</label>
+        <input asp-for="Official.VentralArc" value="@x.VentralArc" />
+        <br />
 
-    <label asp-for="Official.SciaticNotch">Sciatic Notch</label>
-    <input asp-for="Official.SciaticNotch" value="@x.SciaticNotch" /><br />
+        <label asp-for="Official.SubpubicAngle">Subpubic Angle</label>
+        <input asp-for="Official.SubpubicAngle" value="@x.SubpubicAngle" />
+        <br />
 
-    <label asp-for="Official.PubicBone">Pubic Bone</label>
-    <input asp-for="Official.PubicBone" value="@x.PubicBone" /><br />
+        <label asp-for="Official.SciaticNotch">Sciatic Notch</label>
+        <input asp-for="Official.SciaticNotch" value="@x.SciaticNotch" />
+        <br />
 
-    <label asp-for="Official.PreaurSulcus">Preaur Sulcus</label>
-    <input asp-for="Official.PreaurSulcus" value="@x.PreaurSulcus" /><br />
+        <label asp-for="Official.PubicBone">Pubic Bone</label>
+        <input asp-for="Official.PubicBone" value="@x.PubicBone" />
+        <br />
 
-    <label asp-for="Official.MaleedialIpRamaleus">Maleedial IP Ramaleus</label>
-    <input asp-for="Official.MaleedialIpRamaleus" value="@x.MaleedialIpRamaleus" /><br />
+        <label asp-for="Official.PreaurSulcus">Preaur Sulcus</label>
+        <input asp-for="Official.PreaurSulcus" value="@x.PreaurSulcus" />
+        <br />
 
-    <label asp-for="Official.DorsalPitting">Dorsal Pitting</label>
-    <input asp-for="Official.DorsalPitting" value="@x.DorsalPitting" /><br />
+        <label asp-for="Official.MaleedialIpRamaleus">Maleedial IP Ramaleus</label>
+        <input asp-for="Official.MaleedialIpRamaleus" value="@x.MaleedialIpRamaleus" />
+        <br />
 
-    <label asp-for="Official.FemaleoremaleanMaleagnumale">Female Maleur Head</label>
-    <input asp-for="Official.FemaleoremaleanMaleagnumale" value="@x.FemaleoremaleanMaleagnumale" /><br />
+        <label asp-for="Official.DorsalPitting">Dorsal Pitting</label>
+        <input asp-for="Official.DorsalPitting" value="@x.DorsalPitting" />
+        <br />
 
-    <label asp-for="Official.HumaleerusHead">Humaleerus Head</label>
-    <input asp-for="Official.HumaleerusHead" value="@x.HumaleerusHead" /><br />
+        <label asp-for="Official.FemaleoremaleanMaleagnumale">Female Maleur Head</label>
+        <input asp-for="Official.FemaleoremaleanMaleagnumale" value="@x.FemaleoremaleanMaleagnumale" />
+        <br />
 
-    <label asp-for="Official.Osteophytosis">Osteophytosis</label>
-    <input asp-for="Official.Osteophytosis" value="@x.Osteophytosis" /><br />
+        <label asp-for="Official.HumaleerusHead">Humaleerus Head</label>
+        <input asp-for="Official.HumaleerusHead" value="@x.HumaleerusHead" />
+        <br />
 
-    <label asp-for="Official.SupraorbitalRidges">Suprarorbital Ridges</label>
-    <input asp-for="Official.SupraorbitalRidges" value="@x.SupraorbitalRidges" /><br />
+        <label asp-for="Official.Osteophytosis">Osteophytosis</label>
+        <input asp-for="Official.Osteophytosis" value="@x.Osteophytosis" />
+        <br />
 
-    <label asp-for="Official.OrbitEdge">Orbit Edge</label>
-    <input asp-for="Official.OrbitEdge" value="@x.OrbitEdge" /><br />
+        <label asp-for="Official.SupraorbitalRidges">Suprarorbital Ridges</label>
+        <input asp-for="Official.SupraorbitalRidges" value="@x.SupraorbitalRidges" />
+        <br />
 
-    <label asp-for="Official.ParietalBossing">Parietal Bossing</label>
-    <input asp-for="Official.ParietalBossing" value="@x.ParietalBossing" /><br />
+        <label asp-for="Official.OrbitEdge">Orbit Edge</label>
+        <input asp-for="Official.OrbitEdge" value="@x.OrbitEdge" />
+        <br />
 
-    <label asp-for="Official.Gonian">Gonian</label>
-    <input asp-for="Official.Gonian" value="@x.Gonian" /><br />
+        <label asp-for="Official.ParietalBossing">Parietal Bossing</label>
+        <input asp-for="Official.ParietalBossing" value="@x.ParietalBossing" />
+        <br />
 
-    <label asp-for="Official.NuchalCrest">Nuchal Crest</label>
-    <input asp-for="Official.NuchalCrest" value="@x.NuchalCrest" /><br />
+        <label asp-for="Official.Gonian">Gonian</label>
+        <input asp-for="Official.Gonian" value="@x.Gonian" />
+        <br />
 
-    <label asp-for="Official.ZygomaleaticCrest">Zygo Maleatic Crest</label>
-    <input asp-for="Official.ZygomaleaticCrest" value="@x.ZygomaleaticCrest" /><br />
+        <label asp-for="Official.NuchalCrest">Nuchal Crest</label>
+        <input asp-for="Official.NuchalCrest" value="@x.NuchalCrest" />
+        <br />
 
-    <label asp-for="Official.CranialSuture">Cranial Suture</label>
-    <input asp-for="Official.CranialSuture" value="@x.CranialSuture" /><br />
+        <label asp-for="Official.ZygomaleaticCrest">Zygo Maleatic Crest</label>
+        <input asp-for="Official.ZygomaleaticCrest" value="@x.ZygomaleaticCrest" />
+        <br />
 
-    <label asp-for="Official.ToothTaken">Tooth Taken</label>
-    <input asp-for="Official.ToothTaken" value="@x.ToothTaken" /><br />
+        <label asp-for="Official.CranialSuture">Cranial Suture</label>
+        <input asp-for="Official.CranialSuture" value="@x.CranialSuture" />
+        <br />
 
-    <label asp-for="Official.ToothAttrition">Tooth Attrition</label>
-    <input asp-for="Official.ToothAttrition" value="@x.ToothAttrition" /><br />
+        <label asp-for="Official.ToothTaken">Tooth Taken</label>
+        <select asp-for="Official.ToothTaken">
+            <option value="@x.ToothTaken">@x.ToothTaken</option>
+            <option value="True">True</option>
+            <option value="False">False</option>
 
-    <label asp-for="Official.ToothEruption">Tooth Eruption</label>
-    <input asp-for="Official.ToothEruption" value="@x.ToothEruption" /><br />
+        </select>
+        <br />
 
-    <div asp-validation-summary="All"></div>
+        <label asp-for="Official.ToothAttrition">Tooth Attrition</label>
+        <select asp-for="Official.ToothAttrition">
+            <option value="@x.ToothAttrition">@x.ToothAttrition</option>
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+            <option value="V">V</option>
+            <option value="VI">VI</option>
+        </select>
+        <br />
 
-    <button type="submit" name="editedBurial" value="@x.Burialid">Submit</button>
+        <label asp-for="Official.ToothEruption">Tooth Eruption</label>
+        <input asp-for="Official.ToothEruption" value="@x.ToothEruption" />
+        <br />
+
+        <div asp-validation-summary="All"></div>
+
+        <button type="submit" name="editedBurial" value="@x.Burialid">Submit</button>
 </form>
 }
 
