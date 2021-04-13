@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace MummyMadness.Controllers
 {
 
-    //I need to still add in authorization based on the policies (pretty easy)
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -48,7 +47,6 @@ namespace MummyMadness.Controllers
             m.Burialid = rand.Next();
             context.Officials.Add(m);
             context.SaveChanges();
-            //return View("Movies");
             return View("ChangesConfirmed");
         }
 
@@ -67,9 +65,21 @@ namespace MummyMadness.Controllers
 
         public IActionResult BurialSummaryAll(string? gender, string? yearEvac, int pageNum = 1)
 
-
-
         {
+            string category;
+            if (gender != null)
+            {
+                category = gender;
+            }
+            else if (yearEvac != null)
+            {
+                category = yearEvac;
+            }
+            else
+            {
+                category = null;
+            }
+
             int pageSize = 100;
             if (yearEvac is null)
             {
@@ -87,15 +97,18 @@ namespace MummyMadness.Controllers
 
                     PageNumberingInfo = new PageNumberingInfo
                     {
+                        
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
                     //    TotalNumItems = (gender == null ? context.Officials.Count() :
                     //context.Officials.Where(x => x.GenderGe == gender).Count())
-                        TotalNumItems = (context.Officials.Count())
+                        
+                        TotalNumItems = gender == null ? context.Officials.Count() : 
+                            context.Officials.Where(x => x.GenderGe == gender).Count()
                     },
                     //GenderCategory = sex
 
-                });
+                });;
             }
 
             else
@@ -116,7 +129,9 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        //TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = yearEvac == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.YearExcav == yearEvac).Count()
                     },
                     //GenderCategory = sex
                 });
@@ -175,7 +190,9 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        //TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = gender == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.GenderGe == gender).Count()
                     },
                     //GenderCategory = sex
 
@@ -202,7 +219,8 @@ namespace MummyMadness.Controllers
                     {
                         NumItemsPerPage = pageSize,
                         CurrentPage = pageNum,
-                        TotalNumItems = (context.Officials.Count())
+                        TotalNumItems = yearEvac == null ? context.Officials.Count() :
+                            context.Officials.Where(x => x.YearExcav == yearEvac).Count()
                     },
                     //GenderCategory = sex
                 });
@@ -251,11 +269,6 @@ namespace MummyMadness.Controllers
             
             context.Officials.Remove(removeBurial);
             context.Officials.Add(official);
-            
-            
-            
-
-
 
             context.SaveChanges();
 
@@ -289,9 +302,6 @@ namespace MummyMadness.Controllers
             }) ;
 
         }
-
-
-
 
         [Authorize(Policy = "writepolicy")]
         [HttpGet]
