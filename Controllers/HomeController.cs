@@ -271,7 +271,7 @@ namespace MummyMadness.Controllers
                 Burials = context.Officials
 
                 //.FromSqlInterpolated($"Select * from Official where GenderGe == {gender}")
-                
+                .Where(x => x.Burialid == removeBurial.Burialid)
                 .OrderBy(m => m.GenderGe)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)

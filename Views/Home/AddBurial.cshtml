@@ -1,1 +1,147 @@
+@model Official
+
+
+
+
+<h2>Add Record</h2>
+
+
+
+    <form method="post" asp-action="AddBurial">
+        <label asp-for="BurialId1">Burial Location (<i>ex: N 190 E 30 NE 35 SE#1</i>)</label>
+        <input asp-for="BurialId1"  /><br />
+
+        <label asp-for="BurialDepth">Burial Depth</label>
+        <input asp-for="BurialDepth"  /><br />
+
+        <label asp-for="YearExcav">Year Excavated</label>
+        <input asp-for="YearExcav"  /><br />
+
+        <label asp-for="Burialageatdeath">Age at Death</label> <!--Should it be age of skull?-->
+        <input asp-for="Burialageatdeath"  /><br />
+
+        <label asp-for="Burialsamalepletaken">Sample Taken</label>
+        <input asp-for="Burialsamalepletaken" /><br />
+
+        <label asp-for="PreservationIndex">Preservation Index</label>
+        <input asp-for="PreservationIndex"  /><br />
+
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" /><br />
+
+        <label asp-for="BurialSituationNotes">Situation Notes</label>
+        <input asp-for="BurialSituationNotes"  /><br />
+
+        <label asp-for="HairColor">Hair Color</label>
+        <input asp-for="HairColor" /><br />
+
+        <label asp-for="HairTaken">Hair Color</label>
+        <input asp-for="HairTaken"  /><br />
+
+        <label asp-for="BoneTaken">Hair Color</label>
+        <input asp-for="BoneTaken"  /><br />
+
+
+        <label asp-for="EstimaleateLivingStature">Estimated Living Stature</label>
+        <input asp-for="EstimaleateLivingStature"  /><br />
+
+        <label asp-for="BurialPreservation">Burial Preservation</label>
+        <input asp-for="BurialPreservation"  /><br />
+
+        <label asp-for="BurialWrapping">Burial Wrapping</label>
+        <input asp-for="BurialWrapping"  /><br />
+
+        <label asp-for="BurialAdultChild">Burial Adult/Child</label>
+        <input asp-for="BurialAdultChild"  /><br />
+
+        <label asp-for="GenderCode">Gender Code</label>
+        <input asp-for="GenderCode"  /><br />
+
+        <label asp-for="GenderGe">Gender</label>
+        <select asp-for="GenderGe">
+            
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Undetermined">Undetermined</option>
+        </select><br />
+
+        <label asp-for="AgeCodeSingle">Age Code</label>
+        <input asp-for="AgeCodeSingle"  /><br />
+
+        <label asp-for="BurialDirection">Burial Direction</label>
+        <input asp-for="BurialDirection"  /><br />
+
+        <label asp-for="Cluster">Cluster</label>
+        <input asp-for="Cluster"  /><br />
+
+        <label asp-for="EastToHead">East to Head</label>
+        <input asp-for="EastToHead" /><br />
+
+        <label asp-for="VentralArc">Ventral Arc</label>
+        <input asp-for="VentralArc"  /><br />
+
+        <label asp-for="SubpubicAngle">Subpubic Angle</label>
+        <input asp-for="SubpubicAngle"  /><br />
+
+        <label asp-for="SciaticNotch">Sciatic Notch</label>
+        <input asp-for="SciaticNotch"  /><br />
+
+        <label asp-for="PubicBone">Pubic Bone</label>
+        <input asp-for="PubicBone"  /><br />
+
+        <label asp-for="PreaurSulcus">Preaur Sulcus</label>
+        <input asp-for="PreaurSulcus"  /><br />
+
+        <label asp-for="MaleedialIpRamaleus">Maleedial IP Ramaleus</label>
+        <input asp-for="MaleedialIpRamaleus"  /><br />
+
+        <label asp-for="DorsalPitting">Dorsal Pitting</label>
+        <input asp-for="DorsalPitting"  /><br />
+
+        <label asp-for="FemaleoremaleanMaleagnumale">Female Maleur Head</label>
+        <input asp-for="FemaleoremaleanMaleagnumale"  /><br />
+
+        <label asp-for="HumaleerusHead">Humaleerus Head</label>
+        <input asp-for="HumaleerusHead" /><br />
+
+        <label asp-for="Osteophytosis">Osteophytosis</label>
+        <input asp-for="Osteophytosis"  /><br />
+
+        <label asp-for="SupraorbitalRidges">Suprarorbital Ridges</label>
+        <input asp-for="SupraorbitalRidges" /><br />
+
+        <label asp-for="OrbitEdge">Orbit Edge</label>
+        <input asp-for="OrbitEdge"  /><br />
+
+        <label asp-for="ParietalBossing">Parietal Bossing</label>
+        <input asp-for="ParietalBossing"  /><br />
+
+        <label asp-for="Gonian">Gonian</label>
+        <input asp-for="Gonian"  /><br />
+
+        <label asp-for="NuchalCrest">Nuchal Crest</label>
+        <input asp-for="NuchalCrest" /><br />
+
+        <label asp-for="ZygomaleaticCrest">Zygo Maleatic Crest</label>
+        <input asp-for="ZygomaleaticCrest"  /><br />
+
+        <label asp-for="CranialSuture">Cranial Suture</label>
+        <input asp-for="CranialSuture"  /><br />
+
+        <label asp-for="ToothTaken">Tooth Taken</label>
+        <input asp-for="ToothTaken"  /><br />
+
+        <label asp-for="ToothAttrition">Tooth Attrition</label>
+        <input asp-for="ToothAttrition"  /><br />
+
+        <label asp-for="ToothEruption">Tooth Eruption</label>
+        <input asp-for="ToothEruption"  /><br />
+
+        <div asp-validation-summary="All"></div>
+
+        <button type="submit" >Submit</button>
+    </form>
+
+
+
 
